@@ -8,7 +8,7 @@
     </title>
     <meta
       name="description"
-      content="Meet Dr. M. A. Mukheem Mudabbir, senior consultant neurologist and adult and pediatric epileptologist at Gracious Hospital, Mehdipatnam, Hyderabad."
+      content="Meet Dr. M. A. Mukheem Mudabbir, senior consultant neurologist and adult and pediatric at Gracious Hospital, Mehdipatnam, Hyderabad."
     />
     <link
       rel="canonical"
@@ -118,8 +118,8 @@
         display: flex;
         min-height: 88px;
         align-items: center;
-        justify-content: space-between;
-        gap: 32px;
+        justify-content: flex-start;
+        gap: clamp(18px, 2.5vw, 34px);
       }
 
       .brand {
@@ -136,8 +136,8 @@
       }
 
       .brand img {
-        width: 58px;
-        height: 58px;
+        width: 70px;
+        height: 70px;
         object-fit: contain;
       }
 
@@ -147,23 +147,30 @@
 
       .main-nav {
         display: flex;
+        flex: 1 1 auto;
         align-items: center;
-        gap: clamp(16px, 2.4vw, 34px);
+        justify-content: center;
+        gap: clamp(10px, 1.4vw, 20px);
         color: var(--navy);
         font-family: Inter, Arial, sans-serif;
         font-size: 14px;
         font-weight: 600;
       }
 
+      .header-cta {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+
       .main-nav > a,
-      .main-nav summary {
+      .nav-doctors__trigger {
         padding-block: 12px;
         text-decoration: none;
         cursor: pointer;
       }
 
       .main-nav > a:hover,
-      .main-nav summary:hover {
+      .nav-doctors__trigger:hover {
         color: var(--gold-dark);
       }
 
@@ -171,15 +178,7 @@
         position: relative;
       }
 
-      .nav-doctors summary {
-        list-style: none;
-      }
-
-      .nav-doctors summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .nav-doctors summary::after {
+      .nav-doctors__trigger::after {
         display: inline-block;
         width: 7px;
         height: 7px;
@@ -192,9 +191,9 @@
 
       .nav-doctors__menu {
         position: absolute;
-        top: calc(100% + 5px);
+        top: 100%;
         left: -18px;
-        display: grid;
+        display: none;
         min-width: 260px;
         gap: 4px;
         padding: 10px;
@@ -202,6 +201,11 @@
         border-radius: 12px;
         background: var(--white);
         box-shadow: var(--shadow);
+      }
+
+      .nav-doctors:hover > .nav-doctors__menu,
+      .nav-doctors:focus-within > .nav-doctors__menu {
+        display: grid;
       }
 
       .nav-doctors__menu a {
@@ -470,7 +474,7 @@
       }
 
       .section {
-        padding: clamp(68px, 8vw, 104px) 0;
+        padding: clamp(52px, 6vw, 82px) 0;
       }
 
       .section--soft {
@@ -479,7 +483,7 @@
 
       .section-heading {
         max-width: 700px;
-        margin: 0 auto 42px;
+        margin: 0 auto 32px;
         text-align: center;
       }
 
@@ -542,8 +546,8 @@
       }
 
       .specialty-card {
-        min-height: 210px;
-        padding: 25px;
+        min-height: 0;
+        padding: 22px;
         border: 1px solid var(--line);
         border-radius: 15px;
         background: #fff;
@@ -573,6 +577,66 @@
         margin-bottom: 0;
         color: var(--muted);
         font-size: 14px;
+      }
+
+      .reference-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .reference-section__content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .reference-section .specialty-card {
+        min-height: 0;
+      }
+
+      .reference-section--inverse {
+        color: #fff;
+        background: var(--navy);
+      }
+
+      .reference-section--inverse .section-heading h2,
+      .reference-section--inverse .section-heading p:not(.eyebrow) {
+        color: #fff;
+      }
+
+      .reference-section--inverse .section-heading p:not(.eyebrow) {
+        color: rgb(255 255 255 / 76%);
+      }
+
+      .reference-section--inverse .specialty-card {
+        border-color: rgb(225 183 116 / 34%);
+        background: rgb(255 255 255 / 7%);
+      }
+
+      .reference-section--inverse .specialty-card:hover {
+        border-color: var(--gold);
+        background: rgb(255 255 255 / 11%);
+      }
+
+      .reference-section--inverse .specialty-card h3 {
+        color: var(--gold);
+      }
+
+      .reference-section--inverse .specialty-card p {
+        color: rgb(255 255 255 / 82%);
+      }
+
+      .reference-section--inverse::after {
+        position: absolute;
+        top: 50%;
+        right: max(-100px, calc((100vw - 1400px) / 2));
+        width: clamp(280px, 38vw, 520px);
+        aspect-ratio: 8 / 7;
+        transform: translateY(-50%);
+        background: url("../../wp-content/uploads/sites/119/2026/04/brain-illustration.svg")
+          center / contain no-repeat;
+        content: "";
+        opacity: 0.1;
+        pointer-events: none;
       }
 
       .credentials-grid {
@@ -646,9 +710,23 @@
 
       .appointment__grid {
         display: grid;
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
         align-items: center;
         gap: 34px;
+      }
+
+      .appointment__visual {
+        display: grid;
+        min-height: 260px;
+        place-items: center;
+      }
+
+      .appointment__visual img {
+        display: block;
+        width: min(100%, 360px);
+        max-height: 300px;
+        object-fit: contain;
+        filter: drop-shadow(0 18px 32px rgb(0 0 0 / 12%));
       }
 
       .appointment h2 {
@@ -721,12 +799,14 @@
         .site-header__inner {
           min-height: 76px;
           flex-wrap: wrap;
+          justify-content: space-between;
           gap: 12px;
           padding-block: 10px;
         }
 
         .main-nav {
           order: 3;
+          flex: 0 0 100%;
           width: 100%;
           justify-content: space-between;
           gap: 10px;
@@ -773,8 +853,8 @@
         }
 
         .brand img {
-          width: 46px;
-          height: 46px;
+          width: 52px;
+          height: 52px;
         }
 
         .brand span {
@@ -796,7 +876,7 @@
         }
 
         .main-nav > a,
-        .main-nav summary {
+        .nav-doctors__trigger {
           padding-block: 9px;
         }
 
@@ -862,7 +942,7 @@
         }
 
         .section {
-          padding-block: 64px;
+          padding-block: 52px;
         }
 
         .section-heading {
@@ -883,6 +963,15 @@
 
         .appointment__actions .button {
           flex: 1 1 100%;
+        }
+
+        .appointment__visual {
+          min-height: 180px;
+        }
+
+        .appointment__visual img {
+          width: min(72%, 240px);
+          max-height: 210px;
         }
 
         .footer__inner {
@@ -938,12 +1027,14 @@
             src="../../wp-content/uploads/sites/119/2026/04/logo-17.png"
             alt=""
           />
-          <span>Gracious Neuro, Skin, Hair &amp; Laser Clinic</span>
+          <!-- <span>Gracious Neuro, Skin, Hair &amp; Laser Clinic</span> -->
         </a>
         <nav class="main-nav" aria-label="Main navigation">
           <a href="../../index.html">Home</a>
-          <details class="nav-doctors">
-            <summary>Doctors</summary>
+          <div class="nav-doctors">
+            <a class="nav-doctors__trigger" href="../../index.html#doctors"
+              >Doctors</a
+            >
             <div class="nav-doctors__menu">
               <a href="index.html" aria-current="page"
                 >Dr. M. A. Mukheem Mudabbir</a
@@ -952,7 +1043,7 @@
                 >Dr. Nudrath Kahkashan</a
               >
             </div>
-          </details>
+          </div>
           <a href="../../about-us/index.html">About Us</a>
           <a href="../../services/index.html">Services</a>
           <a href="../../blogs/index.html">Blogs</a>
@@ -966,14 +1057,13 @@
       <section class="hero">
         <div class="container hero__grid">
           <div class="hero__copy">
-            <p class="eyebrow">Neurology at Gracious Hospital</p>
+            <p class="eyebrow">Neurology Care in Mehdipatnam</p>
             <h1>Dr. M. A. Mukheem Mudabbir</h1>
             <p class="hero__role">
               Senior Consultant Neurologist &amp; Adult and Pediatric Epileptologist
             </p>
             <p class="hero__intro">
-              Thoughtful, evidence-informed care for neurological conditions,
-              with more than 13 years of clinical experience.
+             Neurological evaluation and treatment for migraine, headaches, vertigo, epilepsy, stroke, neuropathy, Parkinson’s disease and other neurological conditions.
             </p>
             <div class="hero__actions">
               <a class="button" href="#appointment">
@@ -1051,7 +1141,7 @@
             </span>
             <div>
               <strong>Neurology</strong>
-              <span>Adult &amp; pediatric epilepsy</span>
+              <span>Adult &amp; pediatric</span>
             </div>
           </div>
         </div>
@@ -1106,11 +1196,43 @@
             <article class="specialty-card">
               <span class="icon-box" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <path d="M9 4a3 3 0 0 0-5 2.2A3.5 3.5 0 0 0 5 13a3 3 0 0 0 4 4v3M15 4a3 3 0 0 1 5 2.2A3.5 3.5 0 0 1 19 13a3 3 0 0 1-4 4v3M9 4v16M15 4v16M9 8h3M12 12h3M9 16h3" />
+                  <path d="M12 21a8 8 0 1 0-8-8M4 13H2m4-6L4.5 5.5M12 3V1" />
+                  <path d="m12 7-2 5h4l-2 5" />
                 </svg>
               </span>
-              <h3>Epilepsy &amp; seizures</h3>
-              <p>Evaluation and treatment planning for seizure disorders in adults and children.</p>
+              <h3>Migraine &amp; Headaches</h3>
+              <p>
+                Evaluation of recurring headaches, migraine symptoms and related
+                concerns.
+              </p>
+            </article>
+            <article class="specialty-card">
+              <span class="icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <circle cx="12" cy="12" r="4.5" />
+                  <path d="M12 3.5V1m8.5 11H23M12 20.5V23M3.5 12H1" />
+                  <path d="m14 10-3 3h3l-4 4" />
+                </svg>
+              </span>
+              <h3>Vertigo &amp; Dizziness</h3>
+              <p>
+                Assessment of spinning sensations, imbalance and recurring
+                dizziness.
+              </p>
+            </article>
+            <article class="specialty-card">
+              <span class="icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 4a3 3 0 0 0-5 2.2A3.5 3.5 0 0 0 5 13a3 3 0 0 0 4 4v3M15 4a3 3 0 0 1 5 2.2A3.5 3.5 0 0 1 19 13a3 3 0 0 1-4 4v3M9 4v16M15 4v16M9 8h3M12 12h3M9 16h3" />
+                  <path d="m12 7-2 5h4l-2 5" />
+                </svg>
+              </span>
+              <h3>Epilepsy &amp; Seizures</h3>
+              <p>
+                Neurological assessment and management of seizure-related
+                concerns.
+              </p>
             </article>
             <article class="specialty-card">
               <span class="icon-box" aria-hidden="true">
@@ -1119,47 +1241,118 @@
                   <path d="M8.5 12h2l1.5-3 1.5 6 1-3h1" />
                 </svg>
               </span>
-              <h3>Stroke care</h3>
-              <p>Neurological assessment and care for stroke and related concerns.</p>
+              <h3>Stroke</h3>
+              <p>Neurological care for stroke-related concerns.</p>
             </article>
             <article class="specialty-card">
               <span class="icon-box" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <path d="M12 3v3M12 18v3M4.2 6.2l2.1 2.1m11.4 7.4 2.1 2.1M3 12h3m12 0h3M4.2 17.8l2.1-2.1m11.4-7.4 2.1-2.1" />
-                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="12" cy="5" r="2" />
+                  <path d="M12 7v5m0-2-4 3-2 5m6-8 4 3 2 5m-6-6v5l-3 4m3-4 3 4" />
+                  <path d="m6 14-2 2m14-2 2 2" />
                 </svg>
               </span>
-              <h3>Autoimmune neurology</h3>
-              <p>Assessment and management of autoimmune disorders affecting the nervous system.</p>
+              <h3>Peripheral Neuropathy</h3>
+              <p>
+                Assessment of numbness, tingling, burning sensations and nerve
+                pain.
+              </p>
             </article>
             <article class="specialty-card">
               <span class="icon-box" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="2" />
-                  <path d="M12 3v5M12 16v5M3 12h5M16 12h5M5.6 5.6l3.5 3.5m5.8 5.8 3.5 3.5m0-12.8-3.5 3.5m-5.8 5.8-3.5 3.5" />
+                  <circle cx="12" cy="5" r="2" />
+                  <path d="M8 21v-4l2-4-2-3h8l-2 3 2 4v4M8 10 6 8m10 2 2-2" />
+                  <path d="M5 14c1.5-1 2.5-1 4 0m6 0c1.5-1 2.5-1 4 0" />
                 </svg>
               </span>
-              <h3>Movement disorders</h3>
-              <p>Evaluation of tremors and other changes in movement or coordination.</p>
+              <h3>Parkinson’s Disease</h3>
+              <p>Evaluation and management of movement-related symptoms.</p>
             </article>
             <article class="specialty-card">
               <span class="icon-box" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <path d="M12 3a8 8 0 0 0-4 14.9V21h8v-3.1A8 8 0 0 0 12 3Z" />
-                  <path d="M9 21h6M9 11a3 3 0 0 1 6 0c0 2-3 2-3 4" />
+                  <path d="M9 4a3 3 0 0 0-5 2.2A3.5 3.5 0 0 0 5 13a3 3 0 0 0 4 4v3M15 4a3 3 0 0 1 5 2.2A3.5 3.5 0 0 1 19 13a3 3 0 0 1-4 4v3M9 4v16M15 4v16M9 8h3M12 12h3M9 16h3" />
+                  <path d="M12 7v10" />
                 </svg>
               </span>
-              <h3>Memory &amp; metabolic concerns</h3>
-              <p>Neurological evaluation for memory changes and metabolic conditions.</p>
+              <h3>Memory Disorders</h3>
+              <p>Assessment of persistent memory and cognitive concerns.</p>
             </article>
             <article class="specialty-card">
               <span class="icon-box" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M7 20v-3a5 5 0 0 1 10 0v3M5 11a7 7 0 1 1 14 0M9 11h.01M15 11h.01M10 15h4" />
+                  <path d="M2 8h2m16 0h2M3 12h2m14 0h2M4 16h2m12 0h2" />
                 </svg>
               </span>
-              <h3>Neuropathy &amp; pediatric neurology</h3>
-              <p>Care for nerve-related symptoms and neurological concerns in children.</p>
+              <h3>Tremors</h3>
+              <p>Evaluation of persistent or worsening tremors.</p>
+            </article>
+            <article class="specialty-card">
+              <span class="icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 3v18m8-18v18M8 5h8m-8 4h8m-8 4h8m-8 4h8" />
+                  <path d="m4 7 2 2-2 2m16 2-2 2 2 2" />
+                </svg>
+              </span>
+              <h3>Radiculopathy</h3>
+              <p>
+                Evaluation of neck or lower-back nerve symptoms affecting the
+                limbs.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section reference-section reference-section--inverse"
+        id="services"
+      >
+        <div class="container reference-section__content">
+          <div class="section-heading">
+            <h2>Neurology Services</h2>
+            <p>
+              Focused neurological evaluation and personalized care.
+            </p>
+          </div>
+          <div class="specialty-grid">
+            <article class="specialty-card">
+              <h3>Neurology Consultation</h3>
+              <p>
+                Clinical evaluation for brain, nerve and neurological symptoms.
+              </p>
+            </article>
+            <article class="specialty-card">
+              <h3>Migraine Treatment</h3>
+              <p>Assessment and management for recurring migraine concerns.</p>
+            </article>
+            <article class="specialty-card">
+              <h3>Vertigo Evaluation</h3>
+              <p>
+                Assessment of dizziness, vertigo and balance-related symptoms.
+              </p>
+            </article>
+            <article class="specialty-card">
+              <h3>Seizure Management</h3>
+              <p>
+                Neurological evaluation for seizures and epilepsy-related
+                concerns.
+              </p>
+            </article>
+            <article class="specialty-card">
+              <h3>Neuropathy Treatment</h3>
+              <p>
+                Evaluation of nerve-related numbness, tingling, weakness and pain.
+              </p>
+            </article>
+            <article class="specialty-card">
+              <h3>Movement Disorder Care</h3>
+              <p>
+                Assessment of tremor, stiffness, slowness and movement-related
+                symptoms.
+              </p>
             </article>
           </div>
         </div>
@@ -1204,7 +1397,7 @@
                   <p>National Institute of Mental Health and Neuro Sciences (NIMHANS), Bengaluru</p>
                 </div>
               </div>
-              <div class="timeline-item">
+              <!-- <div class="timeline-item">
                 <span class="icon-box" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
                     <path d="M4 20h16M6 20V8l6-4 6 4v12M9 11h.01M15 11h.01M9 15h.01M15 15h.01" />
@@ -1214,7 +1407,7 @@
                   <h3>Hospital experience</h3>
                   <p>Has worked at leading Hyderabad hospitals, including Continental Hospitals and Yashoda Hospitals.</p>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div>
@@ -1274,6 +1467,13 @@
                     >Get directions</a
                   >
                 </div>
+              </div>
+              <div class="appointment__visual">
+                <img
+                  src="../../wp-content/uploads/sites/119/2026/04/brain-illustration.svg"
+                  alt="Human brain illustration"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>

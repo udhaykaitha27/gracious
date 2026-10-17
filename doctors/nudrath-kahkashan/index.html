@@ -118,8 +118,8 @@
         display: flex;
         min-height: 88px;
         align-items: center;
-        justify-content: space-between;
-        gap: 32px;
+        justify-content: flex-start;
+        gap: clamp(18px, 2.5vw, 34px);
       }
 
       .brand {
@@ -136,8 +136,8 @@
       }
 
       .brand img {
-        width: 58px;
-        height: 58px;
+        width: 70px;
+        height: 70px;
         object-fit: contain;
       }
 
@@ -147,23 +147,30 @@
 
       .main-nav {
         display: flex;
+        flex: 1 1 auto;
         align-items: center;
-        gap: clamp(16px, 2.4vw, 34px);
+        justify-content: center;
+        gap: clamp(10px, 1.4vw, 20px);
         color: var(--navy);
         font-family: Inter, Arial, sans-serif;
         font-size: 14px;
         font-weight: 600;
       }
 
+      .header-cta {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+
       .main-nav > a,
-      .main-nav summary {
+      .nav-doctors__trigger {
         padding-block: 12px;
         text-decoration: none;
         cursor: pointer;
       }
 
       .main-nav > a:hover,
-      .main-nav summary:hover {
+      .nav-doctors__trigger:hover {
         color: var(--gold-dark);
       }
 
@@ -171,15 +178,7 @@
         position: relative;
       }
 
-      .nav-doctors summary {
-        list-style: none;
-      }
-
-      .nav-doctors summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .nav-doctors summary::after {
+      .nav-doctors__trigger::after {
         display: inline-block;
         width: 7px;
         height: 7px;
@@ -192,9 +191,9 @@
 
       .nav-doctors__menu {
         position: absolute;
-        top: calc(100% + 5px);
+        top: 100%;
         left: -18px;
-        display: grid;
+        display: none;
         min-width: 260px;
         gap: 4px;
         padding: 10px;
@@ -202,6 +201,11 @@
         border-radius: 12px;
         background: var(--white);
         box-shadow: var(--shadow);
+      }
+
+      .nav-doctors:hover > .nav-doctors__menu,
+      .nav-doctors:focus-within > .nav-doctors__menu {
+        display: grid;
       }
 
       .nav-doctors__menu a {
@@ -470,7 +474,7 @@
       }
 
       .section {
-        padding: clamp(68px, 8vw, 104px) 0;
+        padding: clamp(52px, 6vw, 82px) 0;
       }
 
       .section--soft {
@@ -479,7 +483,7 @@
 
       .section-heading {
         max-width: 700px;
-        margin: 0 auto 42px;
+        margin: 0 auto 32px;
         text-align: center;
       }
 
@@ -542,8 +546,8 @@
       }
 
       .specialty-card {
-        min-height: 210px;
-        padding: 25px;
+        min-height: 0;
+        padding: 22px;
         border: 1px solid var(--line);
         border-radius: 15px;
         background: #fff;
@@ -721,12 +725,14 @@
         .site-header__inner {
           min-height: 76px;
           flex-wrap: wrap;
+          justify-content: space-between;
           gap: 12px;
           padding-block: 10px;
         }
 
         .main-nav {
           order: 3;
+          flex: 0 0 100%;
           width: 100%;
           justify-content: space-between;
           gap: 10px;
@@ -773,8 +779,8 @@
         }
 
         .brand img {
-          width: 46px;
-          height: 46px;
+          width: 52px;
+          height: 52px;
         }
 
         .brand span {
@@ -796,7 +802,7 @@
         }
 
         .main-nav > a,
-        .main-nav summary {
+        .nav-doctors__trigger {
           padding-block: 9px;
         }
 
@@ -859,14 +865,6 @@
         .fact + .fact {
           border-top: 1px solid var(--line);
           border-left: 0;
-        }
-
-        .section {
-          padding-block: 64px;
-        }
-
-        .section-heading {
-          margin-bottom: 30px;
         }
 
         .specialty-grid {
@@ -938,12 +936,14 @@
             src="../../wp-content/uploads/sites/119/2026/04/logo-17.png"
             alt=""
           />
-          <span>Gracious Neuro, Skin, Hair &amp; Laser Clinic</span>
+          <!-- <span>Gracious Neuro, Skin, Hair &amp; Laser Clinic</span> -->
         </a>
         <nav class="main-nav" aria-label="Main navigation">
           <a href="../../index.html">Home</a>
-          <details class="nav-doctors">
-            <summary>Doctors</summary>
+          <div class="nav-doctors">
+            <a class="nav-doctors__trigger" href="../../index.html#doctors"
+              >Doctors</a
+            >
             <div class="nav-doctors__menu">
               <a href="../mukheem-mudabbir/index.html"
                 >Dr. M. A. Mukheem Mudabbir</a
@@ -952,7 +952,7 @@
                 >Dr. Nudrath Kahkashan</a
               >
             </div>
-          </details>
+          </div>
           <a href="../../about-us/index.html">About Us</a>
           <a href="../../services/index.html">Services</a>
           <a href="../../blogs/index.html">Blogs</a>
